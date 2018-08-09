@@ -6,7 +6,7 @@
 #    By: smarwise <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/03 07:21:35 by smarwise          #+#    #+#              #
-#    Updated: 2018/08/06 16:26:01 by smarwise         ###   ########.fr        #
+#    Updated: 2018/08/08 08:52:23 by smarwise         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = wolf3d
 
 FLAGS = gcc -Wall -Wextra -Werror -Wuninitialized
 
-OBJ = obj/keys.o obj/main.o obj/size.o obj/read_from_file.o
+OBJ = obj/coordinates.o  obj/error.o obj/key_set.o obj/free_t_points.o\
+	  obj/dimensions.o obj/get_height.o obj/main.o obj/drawline.o \
+	  obj/read_from_file.o obj/draw_in_window.o obj/check.o obj/int_array.o\
 
 $(NAME): $(OBJ)
 		make -C libft/
