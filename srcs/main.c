@@ -59,7 +59,7 @@ int			main(int argc, char **argv)
 		printf("\n");
 		n++;
 	}*/
-	check(&env, tab);
+	intersection(&env, tab);
 	//calculate(env.points, d, &env);
 	mlx_key_hook(env.mlx.win, key_set, env.points);
 	mlx_loop(env.mlx.mlx);

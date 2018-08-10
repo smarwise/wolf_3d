@@ -128,4 +128,5 @@ char							*create_file_content(char *curr,
 void							calculate(t_points *t, t_rows d, t_env *env);
 void							check(t_env *e, char **tab);
 char							**make_int_array(t_env env, t_rows d);
+void							intersection(t_env *e, char **tab);
 #endif
