@@ -62,17 +62,21 @@ int main(int argc, char **argv)
     (void)argv;
     t_key mlx;
     int b = 0;
+    int x0;
+    int y0;
     t_coordinates c;
     int w = screenwidth;
     double posX = 22, posY = 12;  //x and y start position
     double dirX = -1, dirY = 0; //initial direction vector
     double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
-    
+
+    x0 =  posX;
+    y0  = posY;    
     double time = 0; //time of current frame
     double oldTime = 0; //time of previous frame
 
     mlx.mlx = mlx_init();
-    mlx.win = mlx_new_window(mlx.mlx, 512, 384, "Raycaster");
+    mlx.win = mlx_new_window(mlx.mlx, 1000, 1000, "Raycaster");
     while(b <= 40)
     {
       for(int x = 0; x < w; x++)
@@ -138,7 +142,14 @@ int main(int argc, char **argv)
              side = 1;
            }
            //Check if ray has hit a wall
-           if (worldMap[mapX][mapY] > 0) hit = 1;
+           if (worldMap[mapX][mapY] > 0) 
+           {
+             c.x0 = x0;
+             c.y0 = y0;
+             c.color = 0xFFFF90;
+           //  draw(c, mapX, mapY, mlx);
+             hit = 1;
+           }
          }
          //Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
          if (side == 0)
@@ -170,11 +181,11 @@ int main(int argc, char **argv)
       //give x and y sides different brightness
       if (side == 1) {color = color / 2;}
         c.color = 0xFFFFFF;
-        c.x0 = h;
+        c.x0 = x;
         c.y0 = drawStart;
       //draw the pixels of the stripe as a vertical line
 //      verLine(x, drawStart, drawEnd, color);
-        draw(c, h, drawEnd, mlx);
+       draw(c, x, drawEnd, mlx);
     }
     //timing for input and FPS counter
     oldTime = time;
@@ -186,7 +197,7 @@ int main(int argc, char **argv)
 
     //speed modifiers
     double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
-    double rotSpeed = frameTime * 3.0; //the constant value is in radians/second
+    double rotSpeed = frameTime * 3.0; //the constant value is in radians/second*/
    /* readKeys();
     //move forward if no wall in front of you
     if (keyDown(SDLK_UP))
