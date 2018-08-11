@@ -19,7 +19,8 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
-#include <stdbool.h>
+# include <stdbool.h>
+# include <unistd.h>
 # define screenheight 384
 # define screenwidth 512
 
@@ -109,6 +110,22 @@ typedef struct					s_fds
 	int							fd;
 	int							fd1;
 }								t_fds;
+
+typedef struct					s_var
+{
+	double						posX;
+	double						posY;
+	double						dirY;
+	double						dirX;
+	double						moveSpeed;
+	double						oldDirX;
+	double						oldDirY;
+	double						rotSpeed;
+	double						planeX;
+	double						planeY;
+	double						oldPlaneX;
+	double						oldPlaneY;
+}								t_var;
 
 char							**read_from_file(int fd, t_rows d);
 int								print_map(t_env *env);

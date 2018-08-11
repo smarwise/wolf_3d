@@ -45,16 +45,54 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+void        press(int keycode, t_var v)
+{
+   //move forward if no wall in front of you
+    if (keycode == 13)
+    {
+      if(worldMap[(int)(v.posX + v.dirX * v.moveSpeed)][(int)v.posY] == false) v.posX += v.dirX * v.moveSpeed;
+      if(worldMap[(int)(v.posX)][(int)(v.posY + v.dirY * v.moveSpeed)] == false) v.posY += v.dirY * v.moveSpeed;
+    }
+    //move backwards if no wall behind you
+    if (keycode == 1)
+    {
+      if(worldMap[(int)(v.posX - v.dirX * v.moveSpeed)][(int)(v.posY)] == false) v.posX -= v.dirX * v.moveSpeed;
+      if(worldMap[(int)(v.posX)][(int)(v.posY - v.dirY * v.moveSpeed)] == false) v.posY -= v.dirY * v.moveSpeed;
+    }
+    //rotate to the right
+    if (keycode == 2)
+    {
+      //both camera direction and camera plane must be rotated
+       v.oldDirX = v.dirX;
+      v.dirX = v.dirX * cos(-v.rotSpeed) - v.dirY * sin(-v.rotSpeed);
+      v.dirY = v.oldDirX * sin(-v.rotSpeed) + v.dirY * cos(-v.rotSpeed);
+      v.oldPlaneX = v.planeX;
+      v.planeX = v.planeX * cos(-v.rotSpeed) - v.planeY * sin(-v.rotSpeed);
+      v.planeY = v.oldPlaneX * sin(-v.rotSpeed) + v.planeY * cos(-v.rotSpeed);
+    }
+    //rotate to the left
+    if (keycode == 0)
+    {
+      //both camera direction and camera plane must be rotated
+      v.oldDirX = v.dirX;
+      v.dirX = v.dirX * cos(v.rotSpeed) - v.dirY * sin(v.rotSpeed);
+      v.dirY = v.oldDirX * sin(v.rotSpeed) + v.dirY * cos(v.rotSpeed);
+      v.oldPlaneX = v.planeX;
+      v.planeX = v.planeX * cos(v.rotSpeed) - v.planeY * sin(v.rotSpeed);
+      v.planeY = v.oldPlaneX * sin(v.rotSpeed) + v.planeY * cos(v.rotSpeed);
+    }
+}
+
 /*double     ft_abs(double n)
 {
     return (n >= 0 ? n : -n);
 }*/
 
-int    done()
+/*int    done()
 {
   return (0);
   return (1);  
-}
+}*/
 
 int main(int argc, char **argv)
 {
@@ -65,6 +103,7 @@ int main(int argc, char **argv)
     int x0;
     int y0;
     t_coordinates c;
+    t_var   v;
     int w = screenwidth;
     double posX = 22, posY = 12;  //x and y start position
     double dirX = -1, dirY = 0; //initial direction vector
@@ -191,50 +230,26 @@ int main(int argc, char **argv)
     oldTime = time;
     time = clock();
     double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
-  //  printf("%f", 1.0 / frameTime); //FPS counter
+    //print(1.0 / frameTime); //FPS counter
     //redraw();
     //cls();
 
     //speed modifiers
     double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
     double rotSpeed = frameTime * 3.0; //the constant value is in radians/second*/
-   /* readKeys();
-    //move forward if no wall in front of you
-    if (keyDown(SDLK_UP))
-    {
-      if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
-      if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
-    }
-    //move backwards if no wall behind you
-    if (keyDown(SDLK_DOWN))
-    {
-      if(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
-      if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
-    }
-    //rotate to the right
-    if (keyDown(SDLK_RIGHT))
-    {
-      //both camera direction and camera plane must be rotated
-      double oldDirX = dirX;
-      dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-      dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-      double oldPlaneX = planeX;
-      planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-      planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-    }
-    //rotate to the left
-    if (keyDown(SDLK_LEFT))
-    {
-      //both camera direction and camera plane must be rotated
-      double oldDirX = dirX;
-      dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-      dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-      double oldPlaneX = planeX;
-      planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-      planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-    }*/
+    v.posX = posX;
+	  v.posY = posY;
+	  v.dirY =	dirY;
+	  v.dirX = dirX;
+	  v.moveSpeed = moveSpeed;
+	 // v.oldDirX = oldDirX;
+	  //v.oldDirY = oldDirY;;
+	  v.rotSpeed = rotSpeed;
+    v.planeX = planeX;
+    v.planeY = planeY;
     b++;
   }
+  mlx_key_hook(mlx.win, press, mlx.mlx);
   mlx_key_hook(mlx.win, key_set, mlx.mlx);
   mlx_loop(mlx.mlx);
 }

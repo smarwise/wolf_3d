@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.c                                             :+:      :+:    :+:   */
+/*   press.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/03 07:19:04 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/06 16:26:44 by smarwise         ###   ########.fr       */
+/*   Created: 2018/08/11 13:21:22 by smarwise          #+#    #+#             */
+/*   Updated: 2018/08/11 13:21:36 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/wolf_3d.h"
 
-int		keys(int keycode)
-{
-	if (keycode == 53)
-		exit(0);
-	return (0);
-}
+#include "../includes/wolf3d.h"
+
+void        press(int keycode, t_var v)
