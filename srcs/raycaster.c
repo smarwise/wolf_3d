@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     double oldTime = 0; //time of previous frame
 
     mlx.mlx = mlx_init();
-    mlx.win = mlx_new_window(mlx.mlx, 1000, 1000, "Raycaster");
+    mlx.win = mlx_new_window(mlx.mlx, screenwidth, screenheight, "Raycaster");
     while(b <= 40)
     {
       for(int x = 0; x < w; x++)
@@ -235,5 +235,6 @@ int main(int argc, char **argv)
     }*/
     b++;
   }
+  mlx_key_hook(mlx.win, key_set, mlx.mlx);
   mlx_loop(mlx.mlx);
 }
