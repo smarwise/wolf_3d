@@ -20,8 +20,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 #include <stdbool.h>
-# define screenheight 800
-# define screenwidth 800
+# define screenheight 384
+# define screenwidth 512
 
 typedef struct					s_key
 {

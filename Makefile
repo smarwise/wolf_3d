@@ -6,7 +6,7 @@
 #    By: smarwise <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/03 07:21:35 by smarwise          #+#    #+#              #
-#    Updated: 2018/08/10 14:20:55 by smarwise         ###   ########.fr        #
+#    Updated: 2018/08/11 09:47:51 by smarwise         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,11 @@ $(OBJ): obj/%.o: srcs/%.c
 		$(FLAGS) -c srcs/$*.c -o $@
 
 clean:
+	make clean -C libft/
 	rm -f $(OBJ)
 	
 fclean: clean
+	make fclean -C libft/
 	rm -f $(NAME)
 	
 re: fclean all
