@@ -19,7 +19,9 @@ int			main(int argc, char **argv)
 	t_rows	d;
 	t_fds	f;
 	char	**tab;
+	t_player p;
 
+	p.posX = 0;
 	env.mlx.mlx = mlx_init();
 	env.mlx.win = mlx_new_window(env.mlx.mlx, screenwidth, screenheight, "wolf_3d");
 	f.fd = open(argv[1], O_RDONLY);
@@ -31,36 +33,8 @@ int			main(int argc, char **argv)
 	close(f.fd1);
 	env.points = coordinates(array, d, argv);
 	free_2d_array((void**)array);
-	//int i = 0;
-	//int n = 0;
-	/*int j = 0;
-	while (env.points && n < 10)
-	{
-		i = 0;
-		while (i < 10)
-		{
-			printf("%i : %f, %f, %c\n", j, env.points->x, env.points->y, env.points->z);
-			env.points = env.points->next;
-			i++;
-			j++;
-		}
-	//	printf("\n");
-		n++;
-	}*/
-	tab = make_int_array(env, d);
-	/*while (n < d.rows)
-	{
-		i = 0;
-		while (i < d.columns)
-		{
-			printf("%c ", tab[n][i]);
-			i++;
-		}
-		printf("\n");
-		n++;
-	}*/
-	intersection(&env, tab);
-	//calculate(env.points, d, &env);
+	tab = make_array(env, d);
+	cast_rays(&env, tab, p);
 	mlx_key_hook(env.mlx.win, key_set, env.points);
 	mlx_loop(env.mlx.mlx);
 	free_t_point(env.points);

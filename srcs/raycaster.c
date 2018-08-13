@@ -219,7 +219,7 @@ int main(int argc, char **argv)
 
       //give x and y sides different brightness
       if (side == 1) {color = color / 2;}
-        c.color = 0xFFFFFF;
+        c.color = 0x909090;
         c.x0 = x;
         c.y0 = drawStart;
       //draw the pixels of the stripe as a vertical line
@@ -242,7 +242,6 @@ int main(int argc, char **argv)
 	  v.dirY =	dirY;
 	  v.dirX = dirX;
 	  v.moveSpeed = moveSpeed;
-	 // v.oldDirX = oldDirX;
 	  //v.oldDirY = oldDirY;;
 	  v.rotSpeed = rotSpeed;
     v.planeX = planeX;

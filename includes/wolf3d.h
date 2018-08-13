@@ -47,8 +47,8 @@ void							free_t_point(t_points *head);
 
 typedef struct					s_player
 {
-	int						posx;
-	int						posy;
+	int							posX;
+	int							posY;
 	float						angle;
 	float						disttowall;
 	float						FOV;
@@ -56,7 +56,31 @@ typedef struct					s_player
 	float						eyex;
 	float						eyey;
 	char						wall;
-
+	double						cameraX;
+    double 						rayDirX;
+    double 						rayDirY;
+	int							mapX;
+    int							mapY;
+	double						sideDistX;
+    double						sideDistY;
+	double						deltaDistX;
+	double						deltaDistY;
+	double						perpWallDist;
+	int							stepX;
+	int							stepY;
+	int							hit;
+	int							side;
+	double						dirX;
+	double						dirY;
+	double						planeX;
+	double						planeY;
+	int							x0;
+	int							y0;
+	int							w;
+	int							h;
+	double						lineHeight;
+	int							drawStart;
+	int							drawEnd;
 }								t_player;
 
 typedef struct					s_axis
@@ -144,6 +168,7 @@ char							*create_file_content(char *curr,
 								char *to_add, size_t rsize);
 void							calculate(t_points *t, t_rows d, t_env *env);
 void							check(t_env *e, char **tab);
-char							**make_int_array(t_env env, t_rows d);
+char							**make_array(t_env env, t_rows d);
 void							intersection(t_env *e, char **tab);
+void							cast_rays(t_env *e, char **tab, t_player p);
 #endif

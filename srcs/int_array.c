@@ -12,7 +12,7 @@
 
 #include "../includes/wolf3d.h"
 
-char     **make_int_array(t_env env, t_rows d)
+char     **make_array(t_env env, t_rows d)
 {
     char     **tab;
     int     i;

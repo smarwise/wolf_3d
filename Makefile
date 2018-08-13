@@ -17,7 +17,7 @@ FLAGS = gcc -Wall -Wextra -Werror -Wuninitialized
 OBJ = obj/coordinates.o  obj/error.o obj/key_set.o obj/free_t_points.o\
 	  obj/dimensions.o obj/get_height.o obj/main.o obj/drawline.o \
 	  obj/read_from_file.o obj/check.o obj/int_array.o\
-	  obj/intersection.o\
+	  obj/raycast.o\
 
 $(NAME): $(OBJ)
 		make -C libft/

@@ -12,13 +12,13 @@
 
 #include "../includes/wolf3d.h"
 
-/*void		readKeys(int keycode)
+/*void		readKeys(int keycode, t_player p, char **tab)
 {
-    //move forward if no wall in front of you
+  //move forward if no wall in front of you
     if (keycode == 13)
     {
-      if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
-      if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
+      if(tab[int(p.posX + p.dirX * p.moveSpeed)][int(p.posY)] == false) p.posX += p.dirX * p.moveSpeed;
+      if(tab[int(p.posX)][int(p.posY +p. dirY * p.moveSpeed)] == false) p.posY += dirY * p.moveSpeed;
     }
     //move backwards if no wall behind you
     if (keycode == 1)
@@ -52,7 +52,7 @@
 
 int			key_set(int keycode)
 {
-//	readKeys(keycode);
+ // readKeys(keycode, p, tab);
 	if (keycode == 53)
 		exit(0);
 	return (0);
