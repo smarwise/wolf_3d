@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/07 15:40:15 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/13 12:54:53 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct					s_player
 	double						planeY;
 	int							x0;
 	int							y0;
+	int							x;
 	int							w;
 	int							h;
 	double						lineHeight;
@@ -150,6 +151,14 @@ typedef struct					s_var
 	double						oldPlaneX;
 	double						oldPlaneY;
 }								t_var;
+
+typedef struct					s_struct
+{
+	t_player					p;
+	t_coordinates				c;
+	t_env						e;
+	char						**tab;
+}								t_struct;
 
 char							**read_from_file(int fd, t_rows d);
 int								print_map(t_env *env);

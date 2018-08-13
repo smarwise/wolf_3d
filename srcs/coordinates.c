@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 15:13:43 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/07 09:10:22 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/13 12:21:24 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_points		*allocate(t_axis cnt,
 		cnt.x = 0;
 		while (cnt.x < cnt.columns)
 		{
-			lst->x = cnt.x; //- cnt.columns / 2;
-			lst->y = cnt.y; //- cnt.rows / 2;
+			lst->x = cnt.x;
+			lst->y = cnt.y;
 			cnt.x++;
 			if (cnt.x < cnt.columns)
 				lst->right = lst->next;
