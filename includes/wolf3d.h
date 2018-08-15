@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/13 12:54:53 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:11:31 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct					s_player
 	double						lineHeight;
 	int							drawStart;
 	int							drawEnd;
+	float						rotSpeed;
+	float						moveSpeed;
 }								t_player;
 
 typedef struct					s_axis
@@ -179,5 +181,7 @@ void							calculate(t_points *t, t_rows d, t_env *env);
 void							check(t_env *e, char **tab);
 char							**make_array(t_env env, t_rows d);
 void							intersection(t_env *e, char **tab);
-void							cast_rays(t_env *e, char **tab, t_player p);
+t_struct						*cast_rays(t_env *e, char **tab, t_player *p, t_struct *t);
+int								move(int keycode, t_struct *t);
+t_player						*init(t_player *p);
 #endif

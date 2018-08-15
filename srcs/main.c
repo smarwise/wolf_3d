@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 08:48:29 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/13 12:38:30 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:09:41 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int			main(int argc, char **argv)
 	t_rows	d;
 	t_fds	f;
 	char	**tab;
-	t_player p;
+	t_player *p;
+	t_struct *t;
 
-	p.posX = 0;
+	p = (t_player *)malloc(sizeof(t_player));
+	t = (t_struct *)malloc(sizeof(t_struct));
 	env.mlx.mlx = mlx_init();
 	env.mlx.win = mlx_new_window(env.mlx.mlx, screenwidth, screenheight, "wolf_3d");
 	f.fd = open(argv[1], O_RDONLY);
@@ -34,7 +36,9 @@ int			main(int argc, char **argv)
 	env.points = coordinates(array, d, argv);
 	free_2d_array((void**)array);
 	tab = make_array(env, d);
-	cast_rays(&env, tab, p);
+	p = init(p);
+	t = cast_rays(&env, tab, p, t);
+	mlx_hook(env.mlx.win, 2, 0, move, (void *)t);
 	mlx_key_hook(env.mlx.win, key_set, env.points);
 	mlx_loop(env.mlx.mlx);
 	free_t_point(env.points);
