@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 16:05:10 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/15 16:22:21 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/16 17:40:33 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int             real_move(int keycode, t_struct *t, t_player p)
       p.planeY = oldPlaneX * sin(p.rotSpeed) + p.planeY * cos(p.rotSpeed);
     }
     mlx_clear_window(t->e.mlx.mlx, t->e.mlx.win);
+	mlx_destroy_image(t->e.mlx.mlx, t->e.mlx.image);
     cast_rays(&t->e, t->tab, &p, t);
     return (0);
 }

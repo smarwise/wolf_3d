@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda.c                                              :+:      :+:    :+:   */
+/*   drawline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/20 07:39:59 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/07 08:58:35 by smarwise         ###   ########.fr       */
+/*   Created: 2018/08/16 07:34:17 by smarwise          #+#    #+#             */
+/*   Updated: 2018/08/16 18:21:36 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 double			ft_abs(double n)
 {
 	return (n > 0 ? n : (n) * -1);
+}
+
+void			new_image(t_key *m)
+{
+	m->image = mlx_new_image(m->mlx, screenwidth, screenheight);
+	m->data = mlx_get_data_addr(m->image, &m->bpp, &m->sizeline, &m->endian);
+	m->bpp /= 8;
+}
+
+void			put_pixel(t_key *mlx, int x, int y, int color)
+{
+	if (x >= 0 && y >= 0 && y <= screenheight && x <= screenwidth)
+		*(unsigned int *)(mlx->data + (x * mlx->bpp) + (y * mlx->sizeline)) = color;
 }
 
 void			draw(t_coordinates c, int x1, int y1, t_key mlx)
@@ -30,9 +43,10 @@ void			draw(t_coordinates c, int x1, int y1, t_key mlx)
 	d.y = c.y0;
 	while (d.steps)
 	{
-		mlx_pixel_put(mlx.mlx, mlx.win, d.x, d.y, c.color);
+		put_pixel(&mlx, d.x, d.y, c.color);
 		d.x += d.xinc;
 		d.y += d.yinc;
 		d.steps--;
 	}
+	printf("here🙄");
 }

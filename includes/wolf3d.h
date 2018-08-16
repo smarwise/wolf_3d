@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/15 15:11:31 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/16 18:30:50 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ typedef struct					s_key
 {
 	void						*mlx;
 	void						*win;
+	void						*image;
+	void						*data;
+	int							bpp;
+	int							sizeline;
+	int							endian;
 }								t_key;
 
 typedef struct					s_points
@@ -184,4 +189,5 @@ void							intersection(t_env *e, char **tab);
 t_struct						*cast_rays(t_env *e, char **tab, t_player *p, t_struct *t);
 int								move(int keycode, t_struct *t);
 t_player						*init(t_player *p);
+void							new_image(t_key *m);
 #endif

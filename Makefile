@@ -6,7 +6,7 @@
 #    By: smarwise <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/03 07:21:35 by smarwise          #+#    #+#              #
-#    Updated: 2018/08/15 16:07:34 by smarwise         ###   ########.fr        #
+#    Updated: 2018/08/16 18:27:07 by smarwise         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS = gcc -Wall -Wextra -Werror -Wuninitialized
 
 OBJ = obj/coordinates.o  obj/error.o obj/key_set.o obj/free_t_points.o\
 	  obj/dimensions.o obj/get_height.o obj/main.o obj/drawline.o \
-	  obj/read_from_file.o obj/int_array.o obj/raycast.o obj/keys.o \
+	  obj/read_from_file.o obj/int_array.o obj/raycast.o obj/keys.o obj/horizontal_line.o\
 
 $(NAME): $(OBJ)
 		make -C libft/
