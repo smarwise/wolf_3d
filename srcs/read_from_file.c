@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 13:17:37 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/07 08:59:17 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 13:48:28 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char		*create_file_content(char *curr, char *to_add, size_t rsize)
 
 	i = 0;
 	j = 0;
-	if (curr == NULL)
-		curr = ft_strnew(0);
 	new = ft_strnew(ft_strlen(curr) + rsize);
 	while (curr[i])
 	{
@@ -68,19 +66,19 @@ char		**read_from_file(int fd, t_rows d)
 
 	ft_bzero(buffer, 1000);
 	new = ft_strnew(0);
-	temp = new;
 	while ((rsize = read(fd, buffer, 1000)))
 	{
+		temp = new;
 		if ((rsize < 0) || buffer[0] == '\0' || (ft_isalpha(buffer[3]) == 1))
 		{
 			ft_putendl("Invalid Map");
 			exit(0);
 		}
 		new = create_file_content(new, buffer, rsize);
+		free(temp);
 	}
 	ret = ft_strsplit(new, '\n');
 	check_dimensions(ret, d);
-	free(temp);
 	free(new);
 	return (ret);
 }
