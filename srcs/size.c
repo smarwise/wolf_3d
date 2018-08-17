@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 08:11:15 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/13 12:18:29 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 08:20:15 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_rows		size(int fd)
 	char	*new;
 	char	**ret;
 	char	buffer[1000];
-	
+
 	d.rows = 0;
 	new = ft_strnew(0);
 	while ((rsize = read(fd, buffer, 1000)))

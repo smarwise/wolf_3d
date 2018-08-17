@@ -6,7 +6,7 @@
 #    By: smarwise <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/03 07:21:35 by smarwise          #+#    #+#              #
-#    Updated: 2018/08/17 07:20:02 by smarwise         ###   ########.fr        #
+#    Updated: 2018/08/17 08:39:11 by smarwise         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = wolf3d
 
 FLAGS = gcc -Wall -Wextra -Werror -Wuninitialized
 
-OBJ = obj/error.o\
+OBJ = obj/error.o obj/init.o\
 	  obj/dimensions.o  obj/main.o obj/drawline.o \
 	  obj/read_from_file.o obj/int_array.o obj/raycast.o obj/keys.o\
 

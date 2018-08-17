@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/17 07:50:19 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 09:05:05 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <unistd.h>
-# define screenheight 384
-# define screenwidth 512
+# define SCREENHEIGHT 384
+# define SCREENWIDTH 512
 
 typedef struct					s_key
 {
@@ -37,52 +37,44 @@ typedef struct					s_key
 
 typedef struct					s_player
 {
-	int							posX;
-	int							posY;
-	float						FOV;
-	double						cameraX;
-    double 						rayDirX;
-    double 						rayDirY;
-	int							mapX;
-    int							mapY;
-	double						sideDistX;
-    double						sideDistY;
-	double						deltaDistX;
-	double						deltaDistY;
-	double						perpWallDist;
-	int							stepX;
-	int							stepY;
+	int							posx;
+	int							posy;
+	float						fov;
+	double						camerax;
+	double						raydirx;
+	double						raydiry;
+	int							mapx;
+	int							mapy;
+	double						sidedistx;
+	double						sidedisty;
+	double						deltadistx;
+	double						deltadisty;
+	double						perpwalldist;
+	int							stepx;
+	int							stepy;
 	int							hit;
 	int							side;
-	double						dirX;
-	double						dirY;
-	double						planeX;
-	double						planeY;
+	double						dirx;
+	double						diry;
+	double						planex;
+	double						planey;
 	int							x0;
 	int							y0;
 	int							x;
 	int							w;
 	int							h;
-	double						lineHeight;
-	int							drawStart;
-	int							drawEnd;
-	float						rotSpeed;
-	float						moveSpeed;
+	double						lineheight;
+	int							drawstart;
+	int							drawend;
+	float						rotspeed;
+	float						movespeed;
+	double						olddirx;
+	double						oldplanex;
 }								t_player;
 
 typedef struct					s_axis
 {
-	int							x;
-	int							y;
-	int							rows;
-	int							columns;
-	float						start;
-	float						end;
-	int							n;
-	int							i;
-	int							r;
-	int							c;
-	bool						hitwall;
+	char						**tab;
 	char						**array;
 }								t_axis;
 
@@ -118,23 +110,23 @@ typedef struct					s_fds
 
 typedef struct					s_var
 {
-	double						posX;
-	double						posY;
-	double						dirY;
-	double						dirX;
-	double						moveSpeed;
-	double						oldDirX;
-	double						oldDirY;
-	double						rotSpeed;
-	double						planeX;
-	double						planeY;
-	double						oldPlaneX;
-	double						oldPlaneY;
+	double						posx;
+	double						posy;
+	double						diry;
+	double						dirx;
+	double						movespeed;
+	double						olddirx;
+	double						olddiry;
+	double						rotspeed;
+	double						planex;
+	double						planey;
+	double						oldplanex;
+	double						oldplaney;
 }								t_var;
 
 typedef struct					s_struct
 {
-	t_player					p;
+	t_player					*p;
 	t_coordinates				c;
 	t_key						*e;
 	char						**tab;
@@ -147,13 +139,16 @@ void							draw(t_coordinates c, int x1,
 								int y1, t_key mlx);
 t_rows							dimensions(int fd, int argc);
 void							check_errors(int rows,
-		int columns, int fd, int argc);
+								int columns, int fd, int argc);
 double							ft_abs(double n);
 char							*create_file_content(char *curr,
 								char *to_add, size_t rsize);
 char							**make_array(char **tab, t_rows d);
-t_struct						*cast_rays(t_key *e, char **tab, t_player *p, t_struct *t);
+t_struct						*cast_rays(t_key *e, char **tab,
+								t_player *p, t_struct *t);
 int								move(int keycode, t_struct *t);
 t_player						*init(t_player *p);
 void							new_image(t_key *m);
+t_player						*my_init(t_player *p, char **tab);
+t_player						*find_intersection(t_player *p, char **tab);
 #endif
