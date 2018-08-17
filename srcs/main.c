@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 08:48:29 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/17 09:21:37 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 13:26:46 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				main(int argc, char **argv)
 	t_axis		ar;
 	t_rows		d;
 	t_fds		f;
-	t_struct	*t = NULL;;
+	t_struct	*t;
 
 	t = (t_struct *)malloc(sizeof(t_struct));
 	t->p = (t_player *)malloc(sizeof(t_player));

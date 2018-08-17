@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:42:31 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/17 06:40:14 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 13:29:29 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char		**make_array(char **tab, t_rows d)
 			i++;
 		}
 		array[n][i] = '\0';
+		free_2d_array((void**)temp);
 		n++;
 	}
 	array[n] = NULL;
