@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:29:34 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/16 18:26:03 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 07:40:59 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ t_coordinates		find_color(t_coordinates c, t_player p)
 	}
 	if (p.x % 20 == 0 || p.x % 20 == 1 || p.x % 20 == 2)
 		c.color = 0x0000F5;
-	/*int y;
-	y = drawStart;
-	while (y <= p.drawEnd)
-	{
-		y = y + 20;
-		c.color = 0x0000F5;
-		c.x0 = p.x;
-		c.y0 = 0;
-		draw(c, screenwidth, p.drawStart, c);
-	}*/
 	return (c);
 }
 
@@ -113,14 +103,14 @@ t_player			*init(t_player *p)
 	return (p);
 }
 
-t_struct				*cast_rays(t_env *e, char **tab, t_player *p, t_struct *t)
+t_struct				*cast_rays(t_key *e, char **tab, t_player *p, t_struct *t)
 {
 	t_coordinates	c;
 
 	p->x = 0;
 	int k;
 	k = 0;
-	new_image(&e->mlx);
+	new_image(e);
 	while (p->x < screenwidth && tab[p->posY][p->posX] != '#')
 	{
 		p->mapY = (int)p->posY;
@@ -140,42 +130,27 @@ t_struct				*cast_rays(t_env *e, char **tab, t_player *p, t_struct *t)
 		p->drawEnd = (p->lineHeight + p->h / 2.5) + 50;
 		if (p->drawEnd >= p->h)
 			p->drawEnd = (p->h - 1) + 50;
-		if (k == 0)
-		{
-			float y;
-    		y = p->drawStart;
-    		while (y <= p->drawEnd)
-    		{
-       			 y = y + 20;
-    		    c.color = 0xFF0000;
-     			c.x0 = 0;
-       			c.y0 = (int)y;
-        		horizontal(c, screenwidth, c.y0, e->mlx);
-				printf("x: %i   %i %i\n", p->x, (int)y, screenwidth);
-			}
-			k++;
-		}
 		if (tab[p->mapY][p->mapX] == '#')
 		{
 			c.color = 0x009090;
 			c.x0 = p->x;
 			c.y0 = 0;
-			draw(c, p->x, p->drawStart, e->mlx);
+			draw(c, p->x, p->drawStart, *e);
 			c = find_color(c, *p);
 			c.x0 = p->x;
 			c.y0 = p->drawStart;
-			draw(c, p->x, p->drawEnd, e->mlx);
+			draw(c, p->x, p->drawEnd, *e);
 			c.color = 0x006080;
 			c.x0 = p->x;
 			c.y0 = p->drawEnd;
-			draw(c, p->x, screenheight, e->mlx);
+			draw(c, p->x, screenheight, *e);
 		}
 		p->x++;
 	}
-	mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.image, 0, 0);
+	mlx_put_image_to_window(e->mlx, e->win, e->image, 0, 0);
 	t->p = *p;
 	t->c = c;
-	t->e = *e;
+	t->e = e;
 	t->tab = tab;
 	return (t);
 }

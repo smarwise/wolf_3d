@@ -6,33 +6,34 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 08:42:31 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/13 12:13:12 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 06:40:14 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-char		**make_array(t_env env, t_rows d)
+char		**make_array(char **tab, t_rows d)
 {
-	char	**tab;
+	char	**array;
+	char	**temp;
 	int		i;
 	int		n;
-	
+
 	n = 0;
-	tab = (char **)malloc(sizeof(char*) * (d.rows * d.columns + 1));
-	while (env.points && n < d.rows)
+	array = (char **)malloc(sizeof(char *) * (d.columns + 1));
+	while (n < d.rows)
 	{
 		i = 0;
-		tab[n] = (char *)malloc(sizeof(char) * (d.columns + 1));
-		while (i < d.columns)
+		array[n] = (char *)malloc(sizeof(char) * (d.rows + 1));
+		temp = ft_strsplit(tab[n], ' ');
+		while (i < d.rows)
 		{
-			tab[n][i] = env.points->z;
-			env.points = env.points->next;
+			array[n][i] = *temp[i];
 			i++;
 		}
-		tab[n][i] = '\0';
+		array[n][i] = '\0';
 		n++;
 	}
-	tab[n] = NULL;
-	return (tab);
+	array[n] = NULL;
+	return (array);
 }

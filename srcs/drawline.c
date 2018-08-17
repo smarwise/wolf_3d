@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 07:34:17 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/16 18:21:36 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 07:23:07 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void			new_image(t_key *m)
 void			put_pixel(t_key *mlx, int x, int y, int color)
 {
 	if (x >= 0 && y >= 0 && y <= screenheight && x <= screenwidth)
-		*(unsigned int *)(mlx->data + (x * mlx->bpp) + (y * mlx->sizeline)) = color;
+		*(unsigned int *)(mlx->data + (x * mlx->bpp) +
+				(y * mlx->sizeline)) = color;
 }
 
 void			draw(t_coordinates c, int x1, int y1, t_key mlx)
@@ -48,5 +49,4 @@ void			draw(t_coordinates c, int x1, int y1, t_key mlx)
 		d.y += d.yinc;
 		d.steps--;
 	}
-	printf("here🙄");
 }

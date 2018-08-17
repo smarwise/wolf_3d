@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/16 18:30:50 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 07:50:19 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,11 @@ typedef struct					s_key
 	int							endian;
 }								t_key;
 
-typedef struct					s_points
-{
-	double						x;
-	double						y;
-	char						z;
-	int							c;
-	int							scale;
-	int							shift;
-	struct s_points				*next;
-	struct s_points				*right;
-	struct s_points				*up;
-}								t_points;
-
-void							free_t_point(t_points *head);
-
 typedef struct					s_player
 {
 	int							posX;
 	int							posY;
-	float						angle;
-	float						disttowall;
 	float						FOV;
-	float						rayangle;
-	float						eyex;
-	float						eyey;
-	char						wall;
 	double						cameraX;
     double 						rayDirX;
     double 						rayDirY;
@@ -106,12 +85,6 @@ typedef struct					s_axis
 	bool						hitwall;
 	char						**array;
 }								t_axis;
-
-typedef struct					s_env
-{
-	t_key						mlx;
-	t_points					*points;
-}								t_env;
 
 typedef struct					s_draw
 {
@@ -163,17 +136,13 @@ typedef struct					s_struct
 {
 	t_player					p;
 	t_coordinates				c;
-	t_env						e;
+	t_key						*e;
 	char						**tab;
 }								t_struct;
 
 char							**read_from_file(int fd, t_rows d);
-int								print_map(t_env *env);
-t_points						*get_height(char **str, t_rows d,
-								t_points *lst, t_axis c);
 char							**read_file(int fd, t_rows d);
 int								key_set(int keycode);
-t_points						*coordinates(char **str, t_rows d, char **argv);
 void							draw(t_coordinates c, int x1,
 								int y1, t_key mlx);
 t_rows							dimensions(int fd, int argc);
@@ -182,11 +151,8 @@ void							check_errors(int rows,
 double							ft_abs(double n);
 char							*create_file_content(char *curr,
 								char *to_add, size_t rsize);
-void							calculate(t_points *t, t_rows d, t_env *env);
-void							check(t_env *e, char **tab);
-char							**make_array(t_env env, t_rows d);
-void							intersection(t_env *e, char **tab);
-t_struct						*cast_rays(t_env *e, char **tab, t_player *p, t_struct *t);
+char							**make_array(char **tab, t_rows d);
+t_struct						*cast_rays(t_key *e, char **tab, t_player *p, t_struct *t);
 int								move(int keycode, t_struct *t);
 t_player						*init(t_player *p);
 void							new_image(t_key *m);
