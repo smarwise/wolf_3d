@@ -27,6 +27,8 @@ int				main(int argc, char **argv)
 	t_fds		f;
 	t_struct	*t;
 
+	(void)argc;
+	(void)argv;
 	t = (t_struct *)malloc(sizeof(t_struct));
 	t->p = (t_player *)malloc(sizeof(t_player));
 	mlx.mlx = mlx_init();

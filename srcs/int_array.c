@@ -21,7 +21,6 @@ char		**make_array(char **tab, t_rows d)
 
 	n = 0;
 	array = (char **)malloc(sizeof(char *) * (d.rows + 1));
-	printf("%i : %i\n", d.columns, d.rows);
 	while (n < d.rows)
 	{
 		i = 0;

@@ -41,6 +41,7 @@ t_rows		get_dimensions(int fd, char *temp, t_rows d)
 	while (ret[d.rows])
 		d.rows++;
 	free_2d_array((void**)ret);
+	free(new);
 	return (d);
 }
 
