@@ -32,6 +32,8 @@ char		**make_array(char **tab, t_rows d)
 			i++;
 		}
 		array[n][i] = '\0';
+		if (array[n][0] != '.' && array[n][0] != '#')
+			error_message();
 		free_2d_array((void**)temp);
 		n++;
 	}

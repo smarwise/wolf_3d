@@ -14,9 +14,6 @@
 
 void		check_errors(int rows, int columns, int fd, int argc)
 {
-	(void)rows;
-	(void)fd;
-	(void)columns;
 	if (rows == 0 || columns == 0 || fd < 0)
 	{
 		ft_putendl("Invalid Map");

@@ -152,4 +152,5 @@ void							new_image(t_key *m);
 t_player						*my_init(t_player *p, char **tab);
 t_player						*find_intersection(t_player *p, char **tab);
 char							atoc(char *str);
+void							error_message(void);
 #endif
