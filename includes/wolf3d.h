@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <unistd.h>
+# include <sys/stat.h>
 # define SCREENHEIGHT 384
 # define SCREENWIDTH 512
 

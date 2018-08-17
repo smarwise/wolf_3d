@@ -19,7 +19,7 @@ void		check_errors(int rows, int columns, int fd, int argc)
 		ft_putendl("Invalid Map");
 		exit(0);
 	}
-	if (argc > 4)
+	if (argc > 2)
 	{
 		ft_putendl("Too many arguments");
 		exit(0);
