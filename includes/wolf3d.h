@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/17 09:05:05 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/17 20:32:46 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,4 +151,5 @@ t_player						*init(t_player *p);
 void							new_image(t_key *m);
 t_player						*my_init(t_player *p, char **tab);
 t_player						*find_intersection(t_player *p, char **tab);
+char							atoc(char *str);
 #endif
