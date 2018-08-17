@@ -14,8 +14,8 @@
 
 t_player	*init(t_player *p)
 {
-	p->posx = 22;
-	p->posy = 12;
+	p->posx = 10;
+	p->posy = 10;
 	p->diry = 0;
 	p->dirx = -1;
 	p->h = SCREENHEIGHT;

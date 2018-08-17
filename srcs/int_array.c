@@ -27,7 +27,7 @@ char		**make_array(char **tab, t_rows d)
 		i = 0;
 		array[n] = (char *)malloc(sizeof(char) * (d.columns + 1));
 		temp = ft_strsplit(tab[n], ' ');
-		while (i < d.rows)
+		while (i < d.columns)
 		{
 			array[n][i] = atoc(temp[i]);
 			i++;
