@@ -14,7 +14,7 @@
 
 t_coordinates		find_color(t_coordinates c, t_player p)
 {
-	/*if (p.side == 1)
+	if (p.side == 1)
 	{
 		if ((p.stepx == -1 && p.stepy == -1) || (p.stepx == 1 && p.stepy == -1))
 			c.color = 0xFF0000 / 4;
@@ -24,7 +24,7 @@ t_coordinates		find_color(t_coordinates c, t_player p)
 		else
 			c.color = 0xFF0000 / 4;
 	}
-	if (p.side == 0)
+	else if (p.side == 0)
 	{
 		if (p.stepx == -1 && p.stepy == 1)
 			c.color = 0xFFF000;
@@ -32,11 +32,9 @@ t_coordinates		find_color(t_coordinates c, t_player p)
 			c.color = 0xFFF200;
 		else
 			c.color = 0x00FF00;
-	}*/
-	(void)p;
-	c.color = 0xFF0090;
-	if (p.side == 1)
-		c.color = c.color / 4;
+	}
+	else
+		c.color = 0xFFFFFF;
 	return (c);
 }
 

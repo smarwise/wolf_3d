@@ -19,6 +19,15 @@ int				click_set(int b, t_player *v)
 	exit(0);
 }
 
+void			mlx_do(t_key *mlx, t_struct *t)
+{
+	mlx_hook(mlx->win, 2, 0, move, (void *)t);
+	mlx_hook(mlx->win, 17, 0, click_set, t->p);
+	mlx_loop(mlx->mlx);
+	free((void *)t->p);
+	free((void *)t);
+}
+
 int				main(int argc, char **argv)
 {
 	t_key		mlx;
@@ -44,10 +53,6 @@ int				main(int argc, char **argv)
 	free_2d_array((void**)ar.array);
 	t->p = init(t->p);
 	t = cast_rays(&mlx, ar.tab, t->p, t);
-	mlx_hook(mlx.win, 2, 0, move, (void *)t);
-	mlx_hook(mlx.win, 17, 0, click_set, t->p);
-	mlx_loop(mlx.mlx);
-	free((void *)t->p);
-	free((void *)t);
+	mlx_do(&mlx, t);
 	return (0);
 }
