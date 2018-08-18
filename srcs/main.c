@@ -19,8 +19,10 @@ int				click_set(int b, t_player *v)
 	exit(0);
 }
 
-void			mlx_do(t_key *mlx, t_struct *t)
+void			mlx_do(t_key *mlx, t_struct *t, t_axis *ar)
 {
+	free_2d_array((void**)ar->array);
+	t = cast_rays(mlx, ar->tab, t->p, t);
 	mlx_hook(mlx->win, 2, 0, move, (void *)t);
 	mlx_hook(mlx->win, 17, 0, click_set, t->p);
 	mlx_loop(mlx->mlx);
@@ -35,7 +37,11 @@ int				main(int argc, char **argv)
 	t_rows		d;
 	t_fds		f;
 	t_struct	*t;
+	int			fd2;
 
+	fd2 = open(argv[1], O_DIRECTORY);
+	if (fd2 >= 0)
+		error_message();
 	t = (t_struct *)malloc(sizeof(t_struct));
 	t->p = (t_player *)malloc(sizeof(t_player));
 	mlx.mlx = mlx_init();
@@ -48,9 +54,7 @@ int				main(int argc, char **argv)
 	ar.array = read_from_file(f.fd1, d);
 	close(f.fd1);
 	ar.tab = make_array(ar.array, d);
-	free_2d_array((void**)ar.array);
 	t->p = init(t->p);
-	t = cast_rays(&mlx, ar.tab, t->p, t);
-	mlx_do(&mlx, t);
+	mlx_do(&mlx, t, &ar);
 	return (0);
 }

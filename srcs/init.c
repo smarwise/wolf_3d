@@ -24,8 +24,8 @@ t_player	*init(t_player *p)
 	p->planey = 0.66;
 	p->raydirx = p->dirx + p->planex * p->camerax;
 	p->deltadistx = ft_abs(1 / p->raydirx);
-	p->rotspeed = 6 * M_PI / 180;
-	p->movespeed = 1;
+	p->rotspeed = 0.05;
+	p->movespeed = 0.05;
 	return (p);
 }
 
