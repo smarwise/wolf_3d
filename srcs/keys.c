@@ -16,20 +16,16 @@ int				moveupdown(int keycode, t_struct *t, t_player *p)
 {
 	if (keycode == 13)
 	{
-		if (t->tab[(int)(p->posx + p->dirx *
-					p->movespeed)][(int)(p->posy)] == '.')
-			p->posx += p->dirx * p->movespeed;
-		if (t->tab[(int)(p->posx)][(int)(p->posy + p->diry
-					* p->movespeed)] == '.')
+		if (t->tab[(int)(p->posy)][(int)(p->posx + p->dirx * p->movespeed)] == '.')
 			p->posy += p->diry * p->movespeed;
+		if (t->tab[(int)(p->posy + p->diry * p->movespeed)][(int)(p->posx)] == '.')
+			p->posx += p->dirx * p->movespeed;
 	}
 	if (keycode == 1)
 	{
-		if (t->tab[(int)(p->posx - p->dirx *
-					p->movespeed)][(int)(p->posy)] == '.')
+		if (t->tab[(int)(p->posy)][(int)(p->posx - p->dirx * p->movespeed)] == '.')
 			p->posx -= p->dirx * p->movespeed;
-		if (t->tab[(int)(p->posx)][(int)(p->posy - p->diry
-					* p->movespeed)] == '.')
+		if (t->tab[(int)(p->posy - p->diry * p->movespeed)][(int)(p->posx)] == '.')
 			p->posy -= p->diry * p->movespeed;
 	}
 	mlx_clear_window(t->e->mlx, t->e->win);
