@@ -37,10 +37,9 @@ int				main(int argc, char **argv)
 	t_rows		d;
 	t_fds		f;
 	t_struct	*t;
-	int			fd2;
 
-	fd2 = open(argv[1], O_DIRECTORY);
-	if (fd2 >= 0)
+	f.fd2 = open(argv[1], O_DIRECTORY);
+	if (f.fd2 >= 0)
 		error_message();
 	t = (t_struct *)malloc(sizeof(t_struct));
 	t->p = (t_player *)malloc(sizeof(t_player));

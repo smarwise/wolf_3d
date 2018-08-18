@@ -107,6 +107,7 @@ typedef struct					s_fds
 {
 	int							fd;
 	int							fd1;
+	int							fd2;
 }								t_fds;
 
 typedef struct					s_var
