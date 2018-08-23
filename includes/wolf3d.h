@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/23 09:29:14 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/23 14:35:12 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <stdbool.h>
 # include <unistd.h>
-# include <sys/stat.h>
 # define SCREENHEIGHT 500
 # define SCREENWIDTH 650
 
@@ -38,8 +35,8 @@ typedef struct					s_key
 
 typedef struct					s_player
 {
-	int							posx;
-	int							posy;
+	double						posx;
+	double						posy;
 	float						fov;
 	double						camerax;
 	double						raydirx;
@@ -68,18 +65,10 @@ typedef struct					s_player
 	int							drawstart;
 	int							drawend;
 	float						rotspeed;
-	float						movespeed;
+	double						movespeed;
 	double						olddirx;
 	double						oldplanex;
 	double						raydist;
-	char						left;
-	char						right;
-	char						up;
-	char						down;
-	char						jump;
-	float						z;
-	float						rayx;
-	float						rayy;
 
 }								t_player;
 
@@ -162,7 +151,7 @@ t_struct						*cast_rays(t_key *e, int **tab,
 int								move(int keycode, t_struct *t);
 t_player						*init(t_player *p);
 void							new_image(t_key *m);
-t_player						*my_init(t_player *p, int **tabi, t_struct *t);
+t_player						*my_init(t_player *p, int **tab);
 t_player						*find_intersection(t_player *p, int **tab);
 char							atoc(char *str);
 void							error_message(void);

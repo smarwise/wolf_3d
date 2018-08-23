@@ -34,7 +34,7 @@ t_coordinates		find_color(t_coordinates c, t_player p)
 			c.color = 0xb8e9f2;
 	}
 	else
-		c.color = 0xFFFFFF;
+		c.color = 0xFFFF80;
 	return (c);
 }
 
@@ -114,7 +114,7 @@ t_struct			*cast_rays(t_key *e, int **tab, t_player *p, t_struct *t)
 	new_image(e);
 	while (++p->x < SCREENWIDTH)
 	{
-		p = my_init(p, tab, t);
+		p = my_init(p, tab);
 		if (p->drawstart < 0)
 			p->drawstart = 0;
 		p->drawend = (p->lineheight + p->h / 2.5);

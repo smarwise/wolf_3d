@@ -14,6 +14,7 @@
 
 void			move_down(t_struct *t, t_player *p)
 {
+	ft_putendl("down");
 	if (t->tab[(int)(p->posx - p->dirx * p->movespeed)][(int)(p->posy)]
 			== 0)
 		p->posx -= p->dirx * p->movespeed;
@@ -24,6 +25,7 @@ void			move_down(t_struct *t, t_player *p)
 
 void			move_up(t_struct *t, t_player *p)
 {
+	ft_putendl("up");
 	if (t->tab[(int)(p->posx + p->dirx * p->movespeed)][(int)(p->posy)]
 			== 0)
 		p->posx += p->dirx * p->movespeed;
@@ -34,6 +36,7 @@ void			move_up(t_struct *t, t_player *p)
 
 void			move_right(t_player *p)
 {
+	ft_putendl("right");
 	p->oldplanex = p->planex;
 	p->olddirx = p->dirx;
 	p->dirx = p->dirx * cos(-p->rotspeed) - p->diry * sin(-p->rotspeed);
@@ -45,6 +48,7 @@ void			move_right(t_player *p)
 
 void			move_left(t_player *p)
 {
+	ft_putendl("left");
 	p->oldplanex = p->planex;
 	p->olddirx = p->dirx;
 	p->dirx = p->dirx * cos(p->rotspeed) - p->diry * sin(p->rotspeed);
@@ -57,24 +61,17 @@ void			move_left(t_player *p)
 int				move(int keycode, t_struct *t)
 {
 	if (keycode == 13)
-	{
-		ft_putendl("up");
 		move_up(t, t->p);
-	}
 	if (keycode == 1)
-	{
-		ft_putendl("down");
 		move_down(t, t->p);
-	}
 	if (keycode == 2)
-	{
-		ft_putendl("right");
 		move_right(t->p);
-	}
 	if (keycode == 0)
-	{
-		ft_putendl("left");
 		move_left(t->p);
+	if (keycode == 53)
+	{
+		mlx_destroy_window(t->e->mlx, t->e->win);
+		exit(0);
 	}
 	mlx_clear_window(t->e->mlx, t->e->win);
 	mlx_destroy_image(t->e->mlx, t->e->image);

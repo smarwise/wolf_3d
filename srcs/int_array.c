@@ -29,6 +29,8 @@ int			**make_array(char **tab, t_rows d)
 		while (i < d.columns)
 		{
 			array[n][i] = ft_atoi(temp[i]);
+			if (array[n][i] != 0 && array[n][i] != 1)
+				error_message();
 			i++;
 		}
 		array[n][i] = '\0';

@@ -16,7 +16,6 @@ int				click_set(int b, t_player *v)
 {
 	(void)b;
 	(void)v;
-	sleep(60);
 	exit(0);
 }
 
@@ -50,7 +49,6 @@ int				main(int argc, char **argv)
 	f.fd = open(argv[1], O_RDONLY);
 	f.fd1 = open(argv[1], O_RDONLY);
 	d = dimensions(f.fd, argc);
-	t->d = d;
 	check_errors(d.rows, d.columns, f.fd, argc);
 	close(f.fd);
 	ar.array = read_from_file(f.fd1, d);
