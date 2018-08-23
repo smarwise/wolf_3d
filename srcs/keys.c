@@ -6,71 +6,78 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 16:05:10 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/18 00:22:24 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/23 10:04:30 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-int				moveupdown(int keycode, t_struct *t, t_player *p)
+void			move_down(t_struct *t, t_player *p)
 {
-	if (keycode == 13)
-	{
-		if (t->tab[(int)(p->posy)]
-		[(int)(p->posx + p->dirx * p->movespeed)] == '.')
-			p->posy += p->diry * p->movespeed;
-		if (t->tab[(int)(p->posy + p->diry * p->movespeed)]
-		[(int)(p->posx)] == '.')
-			p->posx += p->dirx * p->movespeed;
-	}
-	if (keycode == 1)
-	{
-		if (t->tab[(int)(p->posy)]
-		[(int)(p->posx - p->dirx * p->movespeed)] == '.')
-			p->posx -= p->dirx * p->movespeed;
-		if (t->tab[(int)(p->posy - p->diry * p->movespeed)]
-		[(int)(p->posx)] == '.')
-			p->posy -= p->diry * p->movespeed;
-	}
-	mlx_clear_window(t->e->mlx, t->e->win);
-	mlx_destroy_image(t->e->mlx, t->e->image);
-	cast_rays(t->e, t->tab, p, t);
-	return (0);
+	if (t->tab[(int)(p->posx - p->dirx * p->movespeed)][(int)(p->posy)]
+			== 0)
+		p->posx -= p->dirx * p->movespeed;
+	if (t->tab[(int)(p->posx)][(int)(p->posy - p->diry * p->movespeed)]
+			== 0)
+		p->posy -= p->diry * p->movespeed;
 }
 
-void			real_move(int keycode, t_struct *t, t_player *p)
+void			move_up(t_struct *t, t_player *p)
+{
+	if (t->tab[(int)(p->posx + p->dirx * p->movespeed)][(int)(p->posy)]
+			== 0)
+		p->posx += p->dirx * p->movespeed;
+	if (t->tab[(int)(p->posx)][(int)(p->posy + p->diry * p->movespeed)]
+			== 0)
+		p->posy += p->diry * p->movespeed;
+}
+
+void			move_right(t_player *p)
 {
 	p->oldplanex = p->planex;
-	if (keycode == 13 || keycode == 1)
-		moveupdown(keycode, t, p);
-	if (keycode == 2)
-	{
-		p->olddirx = p->dirx;
-		p->dirx = p->dirx * cos(-p->rotspeed) - p->diry * sin(-p->rotspeed);
-		p->diry = p->olddirx * sin(-p->rotspeed) + p->diry * cos(-p->rotspeed);
-		p->planex = p->planex * cos(-p->rotspeed)
-			- p->planey * sin(-p->rotspeed);
-		p->planey = p->oldplanex * sin(-p->rotspeed)
-			+ p->planey * cos(-p->rotspeed);
-	}
-	if (keycode == 0)
-	{
-		p->olddirx = p->dirx;
-		p->dirx = p->dirx * cos(p->rotspeed) - p->diry * sin(p->rotspeed);
-		p->diry = p->olddirx * sin(p->rotspeed) + p->diry * cos(p->rotspeed);
-		p->planex = p->planex * cos(p->rotspeed) - p->planey * sin(p->rotspeed);
-		p->planey = p->oldplanex *
-			sin(p->rotspeed) + p->planey * cos(p->rotspeed);
-	}
-	mlx_clear_window(t->e->mlx, t->e->win);
-	mlx_destroy_image(t->e->mlx, t->e->image);
-	cast_rays(t->e, t->tab, p, t);
+	p->olddirx = p->dirx;
+	p->dirx = p->dirx * cos(-p->rotspeed) - p->diry * sin(-p->rotspeed);
+	p->diry = p->olddirx * sin(-p->rotspeed) + p->diry * cos(-p->rotspeed);
+	p->planex = p->planex * cos(-p->rotspeed) - p->planey * sin(-p->rotspeed);
+	p->planey = p->oldplanex * sin(-p->rotspeed) +
+		p->planey * cos(-p->rotspeed);
+}
+
+void			move_left(t_player *p)
+{
+	p->oldplanex = p->planex;
+	p->olddirx = p->dirx;
+	p->dirx = p->dirx * cos(p->rotspeed) - p->diry * sin(p->rotspeed);
+	p->diry = p->olddirx * sin(p->rotspeed) + p->diry * cos(p->rotspeed);
+	p->planex = p->planex * cos(p->rotspeed) - p->planey * sin(p->rotspeed);
+	p->planey = p->oldplanex * sin(p->rotspeed) +
+		p->planey * cos(p->rotspeed);
 }
 
 int				move(int keycode, t_struct *t)
 {
-	if (keycode == 53)
-		exit(0);
-	real_move(keycode, t, t->p);
+	if (keycode == 13)
+	{
+		ft_putendl("up");
+		move_up(t, t->p);
+	}
+	if (keycode == 1)
+	{
+		ft_putendl("down");
+		move_down(t, t->p);
+	}
+	if (keycode == 2)
+	{
+		ft_putendl("right");
+		move_right(t->p);
+	}
+	if (keycode == 0)
+	{
+		ft_putendl("left");
+		move_left(t->p);
+	}
+	mlx_clear_window(t->e->mlx, t->e->win);
+	mlx_destroy_image(t->e->mlx, t->e->image);
+	cast_rays(t->e, t->tab, t->p, t);
 	return (0);
 }

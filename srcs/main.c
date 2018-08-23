@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 08:48:29 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/17 13:26:46 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/23 10:01:54 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int				click_set(int b, t_player *v)
 {
 	(void)b;
 	(void)v;
+	sleep(60);
 	exit(0);
 }
 
 void			mlx_do(t_key *mlx, t_struct *t, t_axis *ar)
 {
+	t->e = mlx;
 	free_2d_array((void**)ar->array);
 	t = cast_rays(mlx, ar->tab, t->p, t);
 	mlx_hook(mlx->win, 2, 0, move, (void *)t);
@@ -48,6 +50,7 @@ int				main(int argc, char **argv)
 	f.fd = open(argv[1], O_RDONLY);
 	f.fd1 = open(argv[1], O_RDONLY);
 	d = dimensions(f.fd, argc);
+	t->d = d;
 	check_errors(d.rows, d.columns, f.fd, argc);
 	close(f.fd);
 	ar.array = read_from_file(f.fd1, d);

@@ -6,7 +6,7 @@
 /*   By: smarwise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:51:11 by smarwise          #+#    #+#             */
-/*   Updated: 2018/08/17 20:32:46 by smarwise         ###   ########.fr       */
+/*   Updated: 2018/08/23 09:29:14 by smarwise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <sys/stat.h>
-# define SCREENHEIGHT 384
-# define SCREENWIDTH 512
+# define SCREENHEIGHT 500
+# define SCREENWIDTH 650
 
 typedef struct					s_key
 {
@@ -71,11 +71,21 @@ typedef struct					s_player
 	float						movespeed;
 	double						olddirx;
 	double						oldplanex;
+	double						raydist;
+	char						left;
+	char						right;
+	char						up;
+	char						down;
+	char						jump;
+	float						z;
+	float						rayx;
+	float						rayy;
+
 }								t_player;
 
 typedef struct					s_axis
 {
-	char						**tab;
+	int							**tab;
 	char						**array;
 }								t_axis;
 
@@ -131,7 +141,8 @@ typedef struct					s_struct
 	t_player					*p;
 	t_coordinates				c;
 	t_key						*e;
-	char						**tab;
+	t_rows						d;
+	int							**tab;
 }								t_struct;
 
 char							**read_from_file(int fd, t_rows d);
@@ -145,14 +156,18 @@ void							check_errors(int rows,
 double							ft_abs(double n);
 char							*create_file_content(char *curr,
 								char *to_add, size_t rsize);
-char							**make_array(char **tab, t_rows d);
-t_struct						*cast_rays(t_key *e, char **tab,
+int								**make_array(char **tab, t_rows d);
+t_struct						*cast_rays(t_key *e, int **tab,
 								t_player *p, t_struct *t);
 int								move(int keycode, t_struct *t);
 t_player						*init(t_player *p);
 void							new_image(t_key *m);
-t_player						*my_init(t_player *p, char **tab);
-t_player						*find_intersection(t_player *p, char **tab);
+t_player						*my_init(t_player *p, int **tabi, t_struct *t);
+t_player						*find_intersection(t_player *p, int **tab);
 char							atoc(char *str);
 void							error_message(void);
+int								key_move(int keycode, t_struct *t);
+int								key_hook(int keycode, t_struct *t);
+int								key_press(int keycode, t_struct *t);
+
 #endif
